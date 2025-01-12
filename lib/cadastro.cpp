@@ -4,7 +4,8 @@
 #include <fstream>
 #include <vector>
 #include <map>
-
+#include<algorithm>
+using std::pair;
 using namespace std;
 
 void ListaDeJogadores::adicionaPlayer(const string &nome, const string &nick){
@@ -47,11 +48,14 @@ void ListaDeJogadores::leDoArquivo(ifstream &arquivo){
     }
 }
 
-void ListaDeJogadores::adicionaPlayer(const string &nome, const string &nick){
-    if (players.find(nick) != players.end())
-    {
-       cout<<"Erro: jogador repetido" << endl;
+void ListaDeJogadores::ordenaJogadoresEimprimeHistorico(){
+    vector<string> jogadoresOrganizados;
+    for(const auto &pair: players){
+        jogadoresOrganizados.push_back(pair.first);
+    } 
+    sort(jogadoresOrganizados.begin(),jogadoresOrganizados.end());
+    for (const auto &nick : jogadoresOrganizados){
+        players[nick].printaVitoriasEderrotas();
     }
-    players[nick] = Player(nick, nome);
-    cout << "Jogador " << nick << "adicionado com sucesso!" << endl; 
+    
 }

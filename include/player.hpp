@@ -29,6 +29,8 @@ public:
     void setDerrotaReversi(int quantidade);
     void setVitoriaLig4(int quantidade);
     void setDerrotaLig4(int quantidade);
+    string getNick();
+    string getNome();
     
 };
 

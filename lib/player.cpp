@@ -14,6 +14,12 @@ void Player::printaVitoriasEderrotas(){
     cout << "LIG4 - V: " << vitoriasJogoDaVelha << " D: " << derrotasJogoDaVelha << endl;
     cout << "VELHA - V: " << vitoriaslig4 << " D: " << derrotaslig4 << endl;
 }
+string Player::getNick(){
+    return _nick;
+}
+string Player::getNome(){
+    return _nome;
+}
 void Player :: setVitoriaVelha(int quantidade){
     this->vitoriasJogoDaVelha = quantidade;
 }

@@ -17,7 +17,7 @@ class ListaDeJogadores{
     void adicionaPlayer (const string &nome, const string &nick);
     void deletaPlayer(const string &nick);
     void leDoArquivo(ifstream &arquivo);
-    void ordenaJogadores();
+    void ordenaJogadoresEimprimeHistorico();
     void imprimeJogadores() const;
 };
 

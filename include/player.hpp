@@ -23,6 +23,13 @@ public:
     Player(const string &nome, const string &nick);
     void printaVitoriasEderrotas();
     ~Player(){};
+    void setVitoriaVelha(int quantidade);
+    void setDerrotaVelha(int quantidade);
+    void setVitoriaReversi(int quantidade);
+    void setDerrotaReversi(int quantidade);
+    void setVitoriaLig4(int quantidade);
+    void setDerrotaLig4(int quantidade);
+    
 };
 
 

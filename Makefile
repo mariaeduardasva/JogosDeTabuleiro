@@ -14,15 +14,16 @@ OBJFILES = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCFILES))
 all: $(TARGET)
 
 $(TARGET): $(OBJFILES)
-	@mkdir -p $(BINDIR)
+	@if not exist $(BINDIR) mkdir $(BINDIR)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	@mkdir -p $(OBJDIR)
+	@if not exist $(OBJDIR) mkdir $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJDIR) $(BINDIR)
+	@if exist $(OBJDIR) rmdir /s /q $(OBJDIR)
+	@if exist $(BINDIR) rmdir /s /q $(BINDIR)
 
 # Regras especiais
 .PHONY: all clean

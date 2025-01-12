@@ -14,3 +14,21 @@ void Player::printaVitoriasEderrotas(){
     cout << "LIG4 - V: " << vitoriasJogoDaVelha << " D: " << derrotasJogoDaVelha << endl;
     cout << "VELHA - V: " << vitoriaslig4 << " D: " << derrotaslig4 << endl;
 }
+void Player :: setVitoriaVelha(int quantidade){
+    this->vitoriasJogoDaVelha = quantidade;
+}
+void Player :: setDerrotaVelha(int quantidade){
+    this->derrotasJogoDaVelha = quantidade;
+}
+void Player :: setVitoriaReversi(int quantidade){
+    this->vitoriasReversi = quantidade;
+}
+void Player :: setDerrotaReversi(int quantidade){
+    this->derrotasReversi = quantidade;
+}
+void Player :: setVitoriaLig4(int quantidade){
+    this->vitoriaslig4 = quantidade;
+}
+void Player :: setDerrotaLig4(int quantidade){
+    this->derrotaslig4 = quantidade;
+}

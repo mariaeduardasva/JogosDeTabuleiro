@@ -29,6 +29,13 @@ public:
     void setDerrotaReversi(int quantidade);
     void setVitoriaLig4(int quantidade);
     void setDerrotaLig4(int quantidade);
+    //get
+    int getVitoriaVelha();
+    int getDerrotaVelha();
+    int getVitoriaReversi();
+    int getDerrotaReversi();
+    int getVitoriaLig4();
+    int getDerrotaLig4();
     string getNick();
     string getNome();
     

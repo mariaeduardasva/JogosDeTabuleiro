@@ -38,3 +38,24 @@ void Player :: setVitoriaLig4(int quantidade){
 void Player :: setDerrotaLig4(int quantidade){
     this->derrotaslig4 = quantidade;
 }
+
+//getters para vitoria e derrota 
+
+int Player :: getVitoriaVelha(){
+    return vitoriasJogoDaVelha;
+}
+int Player :: getDerrotaVelha(){
+    return derrotasJogoDaVelha;
+}
+int Player :: getVitoriaReversi(){
+    return vitoriasReversi;
+}
+int Player :: getDerrotaReversi(){
+    return derrotasReversi;
+}
+int Player :: getVitoriaLig4(){
+    return vitoriaslig4;
+}
+int Player :: getDerrotaLig4(){
+    return derrotaslig4;
+}

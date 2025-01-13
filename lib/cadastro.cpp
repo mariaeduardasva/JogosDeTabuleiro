@@ -5,6 +5,8 @@
 #include <vector>
 #include <map>
 #include<algorithm>
+
+using std::ofstream;
 using std::pair;
 using namespace std;
 
@@ -36,7 +38,7 @@ void ListaDeJogadores::leDoArquivo(ifstream &arquivo){
         while(arquivo >> nome >> nick >> vitoriasReversi >> derrotasReversi >> vitoriasVelha >> derrotasVelha >> vitoriasLig4 >> derrotasLig4) {
             Player jogador(nome, nick);
             jogador.setVitoriaVelha(vitoriasVelha);
-            jogador.setVitoriaVelha(derrotasVelha);
+            jogador.setDerrotaVelha(derrotasVelha);
             jogador.setVitoriaReversi(vitoriasReversi);
             jogador.setDerrotaReversi(derrotasReversi);
             jogador.setVitoriaLig4(vitoriasLig4);
@@ -58,4 +60,14 @@ void ListaDeJogadores::ordenaJogadoresEimprimeHistorico(){
         players[nick].printaVitoriasEderrotas();
     }
     
+}
+void ListaDeJogadores::imprimeJogadoresNoArquivo(Player &player, const string &arquivo) const{
+    ofstream arquivoDeSaida(arquivo);
+    if(!arquivoDeSaida.is_open()){
+        std::cerr << "Erro ao abrir o arquivo para escrita" << endl;
+        return;
+    }
+    arquivoDeSaida << player.getNick() << " " << player.getNome() << " " << player.getVitoriaReversi()
+    <<  " " << player.getDerrotaReversi() <<  " " << player.getVitoriaLig4() << " " <<  player.getDerrotaLig4() 
+    <<  " " << player.getVitoriaVelha() <<  " " << player.getDerrotaVelha();
 }

@@ -6,6 +6,8 @@
 #include<vector>
 
 using std::ifstream;
+using std::ofstream;
+
 using namespace std;
 
 class ListaDeJogadores{
@@ -18,7 +20,7 @@ class ListaDeJogadores{
     void deletaPlayer(const string &nick);
     void leDoArquivo(ifstream &arquivo);
     void ordenaJogadoresEimprimeHistorico();
-    void imprimeJogadores() const;
+    void imprimeJogadoresNoArquivo( Player &player, const string &arquivo) const;
 };
 
 

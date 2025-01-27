@@ -13,7 +13,7 @@ void JogoLig4::inicializar() {
     }
 }
 
-bool JogoLig4::fazerJogada(int jogador,int linha, int coluna) {
+bool JogoLig4::fazerJogada(int jogador, int linha, int coluna) {
     if (coluna < 0 || coluna >= colunas) {
         throw out_of_range("ERRO: Coluna inválida!");
     }
@@ -88,4 +88,15 @@ bool JogoLig4::verificarVitoria() {
     }
 
     return false;
+}
+
+void JogoLig4::exibirTabuleiro() {
+    cout << "Tabuleiro atual: " << endl;
+    for (int linha = 0; linha < linhas; ++linha) {
+        for (int coluna = 0; coluna < colunas; ++coluna) {
+            cout << tabuleiro[linha][coluna] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
 }

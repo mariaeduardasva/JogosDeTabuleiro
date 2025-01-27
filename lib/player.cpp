@@ -1,61 +1,37 @@
-#include<iostream>
-#include<string>
 #include "player.hpp"
+#include <iostream>
 
 using std::cout;
 using std::endl;
 
-Player::Player(const string &nome, const string &nick):_nome(nome),_nick(nick),vitoriasJogoDaVelha(0),derrotasJogoDaVelha(0),
-vitoriaslig4(0),derrotaslig4(0), vitoriasReversi(0),derrotasReversi(0){}
+Player::Player() : nome(""), nick(""), vitoriasReversi(0), derrotasReversi(0),
+                   vitoriasVelha(0), derrotasVelha(0), vitoriasLig4(0), derrotasLig4(0) {}
 
-void Player::printaVitoriasEderrotas(){
-    cout << "Apelido: " << _nick << " " << "Nome:" << _nome << endl;
-    cout << "REVERSI - V: " << vitoriasReversi << " D: " << derrotasReversi << endl;
-    cout << "LIG4 - V: " << vitoriasJogoDaVelha << " D: " << derrotasJogoDaVelha << endl;
-    cout << "VELHA - V: " << vitoriaslig4 << " D: " << derrotaslig4 << endl;
-}
-string Player::getNick(){
-    return _nick;
-}
-string Player::getNome(){
-    return _nome;
-}
-void Player :: setVitoriaVelha(int quantidade){
-    this->vitoriasJogoDaVelha = quantidade;
-}
-void Player :: setDerrotaVelha(int quantidade){
-    this->derrotasJogoDaVelha = quantidade;
-}
-void Player :: setVitoriaReversi(int quantidade){
-    this->vitoriasReversi = quantidade;
-}
-void Player :: setDerrotaReversi(int quantidade){
-    this->derrotasReversi = quantidade;
-}
-void Player :: setVitoriaLig4(int quantidade){
-    this->vitoriaslig4 = quantidade;
-}
-void Player :: setDerrotaLig4(int quantidade){
-    this->derrotaslig4 = quantidade;
+Player::Player(const string &nome, const string &nick) 
+    : nome(nome), nick(nick), vitoriasReversi(0), derrotasReversi(0), 
+      vitoriasVelha(0), derrotasVelha(0), vitoriasLig4(0), derrotasLig4(0) {}
+
+void Player::printaVitoriasEderrotas() const {
+    cout << "Nick: " << nick << " Nome: " << nome << endl;
+    cout << "Reversi - Vitórias: " << vitoriasReversi << ", Derrotas: " << derrotasReversi << endl;
+    cout << "Lig4 - Vitórias: " << vitoriasLig4 << ", Derrotas: " << derrotasLig4 << endl;
+    cout << "Velha - Vitórias: " << vitoriasVelha << ", Derrotas: " << derrotasVelha << endl;
 }
 
-//getters para vitoria e derrota 
+// Setters
+void Player::setVitoriaVelha(int v) { vitoriasVelha = v; }
+void Player::setDerrotaVelha(int d) { derrotasVelha = d; }
+void Player::setVitoriaReversi(int v) { vitoriasReversi = v; }
+void Player::setDerrotaReversi(int d) { derrotasReversi = d; }
+void Player::setVitoriaLig4(int v) { vitoriasLig4 = v; }
+void Player::setDerrotaLig4(int d) { derrotasLig4 = d; }
 
-int Player :: getVitoriaVelha(){
-    return vitoriasJogoDaVelha;
-}
-int Player :: getDerrotaVelha(){
-    return derrotasJogoDaVelha;
-}
-int Player :: getVitoriaReversi(){
-    return vitoriasReversi;
-}
-int Player :: getDerrotaReversi(){
-    return derrotasReversi;
-}
-int Player :: getVitoriaLig4(){
-    return vitoriaslig4;
-}
-int Player :: getDerrotaLig4(){
-    return derrotaslig4;
-}
+// Getters
+int Player::getVitoriaVelha() const { return vitoriasVelha; }
+int Player::getDerrotaVelha() const { return derrotasVelha; }
+int Player::getVitoriaReversi() const { return vitoriasReversi; }
+int Player::getDerrotaReversi() const { return derrotasReversi; }
+int Player::getVitoriaLig4() const { return vitoriasLig4; }
+int Player::getDerrotaLig4() const { return derrotasLig4; }
+string Player::getNick() const { return nick; }
+string Player::getNome() const { return nome; }

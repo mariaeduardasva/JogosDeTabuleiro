@@ -61,7 +61,7 @@ void ListaDeJogadores::ordenaJogadoresEimprimeHistorico(){
     }
     
 }
-void ListaDeJogadores::imprimeJogadoresNoArquivo(Player &player, const string &arquivo) const{
+void ListaDeJogadores::imprimeJogadoresNoArquivo( Player &player, const string &arquivo) const{
     ofstream arquivoDeSaida(arquivo);
     if(!arquivoDeSaida.is_open()){
         std::cerr << "Erro ao abrir o arquivo para escrita" << endl;

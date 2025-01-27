@@ -1,5 +1,5 @@
-#ifndef JOGOLIG4_H
-#define JOGOLIG4_H
+#ifndef JOGO_LIG4_HPP
+#define JOGO_LIG4_HPP
 
 #include "JogoTabuleiro.hpp"
 #include <stdexcept>
@@ -17,8 +17,10 @@ public:
     // Verifica se há uma condição de vitória
     bool verificarVitoria() override;
 
+    // Exibe o estado atual do tabuleiro
+    void exibirTabuleiro(); 
+
     ~JogoLig4() override = default;
 };
 
 #endif
-

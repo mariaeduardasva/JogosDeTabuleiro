@@ -23,7 +23,8 @@ void exibirMenu() {
     cout << "Escolha uma opção: ";
 }
 
-void executarJogo(JogoDeTabuleiro& jogo) {
+void executarJogoDaVelha() {
+    JogoDaVelha jogo;
     jogo.inicializar();
     jogo.exibirTabuleiro();
 
@@ -34,19 +35,80 @@ void executarJogo(JogoDeTabuleiro& jogo) {
             int linha, coluna;
             cin >> linha >> coluna;
 
-            if (!jogo.fazerJogada(turno, linha, coluna)) {
-                cout << "Jogada inválida! Tente novamente.\n";
-                continue;
-            }
-
+            jogo.fazerJogada(turno, linha, coluna);
             jogo.exibirTabuleiro();
 
             if (jogo.verificarVitoria()) {
-                cout << "Parabéns, Jogador " << turno << ", você venceu!\n";
+                cout << "Parabéns, Jogador " << turno << " venceu!\n";
                 break;
             }
 
-            turno = 3 - turno; // Alterna entre 1 e 2
+            cout << "Deseja desfazer sua jogada? (1-Sim, 0-Não): ";
+            int desfazer;
+            cin >> desfazer;
+            if (desfazer == 1) {
+                jogo.desfazerJogada(turno);
+                jogo.exibirTabuleiro();
+            }
+
+            turno = 3 - turno;
+        } catch (const exception& e) {
+            cout << e.what() << endl;
+        }
+    }
+}
+
+void executarJogoLig4() {
+    JogoLig4 jogo;
+    jogo.inicializar();
+    jogo.exibirTabuleiro();
+
+    int turno = 1;
+    while (true) {
+        try {
+            cout << "Jogador " << turno << ", escolha a coluna para jogar: ";
+            int coluna;
+            cin >> coluna;
+
+            jogo.fazerJogada(turno, 0, coluna);
+            jogo.exibirTabuleiro();
+
+            if (jogo.verificarVitoria()) {
+                cout << "Parabéns, Jogador " << turno << " venceu!\n";
+                break;
+            }
+
+            turno = 3 - turno;
+        } catch (const exception& e) {
+            cout << e.what() << endl;
+        }
+    }
+}
+
+void executarJogoReversi() {
+    JogoReversi jogo;
+    jogo.inicializar();
+    jogo.exibirTabuleiro();
+
+    int turno = 1;
+    while (true) {
+        try {
+            cout << "Jogador " << turno << ", faça sua jogada (linha e coluna): ";
+            int linha, coluna;
+            cin >> linha >> coluna;
+
+            jogo.fazerJogada(turno, linha, coluna);
+            jogo.exibirTabuleiro();
+
+            cout << "Pontuação atual:\n";
+            jogo.exibirPontuacao();
+
+            if (jogo.verificarVitoria()) {
+                cout << "Jogo encerrado!\n";
+                break;
+            }
+
+            turno = 3 - turno;
         } catch (const exception& e) {
             cout << e.what() << endl;
         }
@@ -82,21 +144,18 @@ int main() {
             listaDeJogadores.ordenaJogadoresEimprimeHistorico();
             break;
 
-        case 4: {
-            JogoDaVelha jogo;
-            executarJogo(jogo);
+        case 4:
+            executarJogoDaVelha();
             break;
-        }
-        case 5: {
-            JogoLig4 jogo;
-            executarJogo(jogo);
+
+        case 5:
+            executarJogoLig4();
             break;
-        }
-        case 6: {
-            JogoReversi jogo;
-            executarJogo(jogo);
+
+        case 6:
+            executarJogoReversi();
             break;
-        }
+
         case 7:
             cout << "Saindo do sistema...\n";
             break;

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-JogoReversi::JogoReversi() : JogoDeTabuleiro(8, 8) {}
+JogoReversi::JogoReversi() : JogoDeTabuleiro(8, 8), capturasJogador1(0), capturasJogador2(0) {}
 
 void JogoReversi::inicializar() {
     for (auto& linha : tabuleiro) {
@@ -43,6 +43,25 @@ bool JogoReversi::verificarVitoria() {
     }
 
     cout << "Resultado Final: X = " << countX << ", O = " << countO << endl;
+
+    // Critério de desempate baseado nas peças capturadas
+    if (countX == countO) {
+        if (capturasJogador1 > capturasJogador2) {
+            cout << "Vencedor por desempate: Jogador X (peças capturadas)" << endl;
+        } else if (capturasJogador1 < capturasJogador2) {
+            cout << "Vencedor por desempate: Jogador O (peças capturadas)" << endl;
+        } else {
+            cout << "Empate total!" << endl;
+        }
+    } else {
+        // Determina o vencedor baseado nas peças no tabuleiro
+        if (countX > countO) {
+            cout << "Vencedor: Jogador X!" << endl;
+        } else {
+            cout << "Vencedor: Jogador O!" << endl;
+        }
+    }
+
     return countX + countO == linhas * colunas;
 }
 
@@ -62,29 +81,42 @@ bool JogoReversi::capturarPecas(int jogador, int linha, int coluna) {
         {1, -1}, {1, 0}, {1, 1}
     };
 
+    // Verificar cada direção
     for (const auto& [dLinha, dColuna] : direcoes) {
         int x = linha + dLinha;
         int y = coluna + dColuna;
         bool temAdversario = false;
+        vector<pair<int, int>> pecasCapturadas;
 
+        // Verificar se há peças adversárias na direção
         while (posicaoValida(x, y) && tabuleiro[x][y] == adversario) {
+            pecasCapturadas.push_back({x, y});
             x += dLinha;
             y += dColuna;
             temAdversario = true;
         }
 
+        // Se encontrou uma peça adversária e uma peça do jogador no final da direção
         if (temAdversario && posicaoValida(x, y) && tabuleiro[x][y] == peca) {
-            // Capturar peças
-            x -= dLinha;
-            y -= dColuna;
-            while (x != linha || y != coluna) {
-                tabuleiro[x][y] = peca;
-                x -= dLinha;
-                y -= dColuna;
+            // Captura as peças do adversário
+            for (const auto& [capturadaX, capturadaY] : pecasCapturadas) {
+                tabuleiro[capturadaX][capturadaY] = peca;
+
+                // Atualiza o contador de peças capturadas
+                if (peca == 'X') {
+                    capturasJogador1++;
+                } else {
+                    capturasJogador2++;
+                }
             }
             capturou = true;
         }
     }
 
     return capturou;
+}
+
+void JogoReversi::exibirPontuacao() const {
+    cout << "Pontuação de capturas: Jogador X = " << capturasJogador1
+         << ", Jogador O = " << capturasJogador2 << endl;
 }

@@ -1,5 +1,5 @@
-#ifndef JOGOREVERSI_H
-#define JOGOREVERSI_H
+#ifndef JOGO_REVERSI_HPP
+#define JOGO_REVERSI_HPP
 
 #include "JogoTabuleiro.hpp"
 #include <stdexcept>
@@ -17,6 +17,9 @@ public:
     // Verifica se há uma condição de vitória
     bool verificarVitoria() override;
 
+    // Exibe a pontuação das capturas
+    void exibirPontuacao() const;
+
     ~JogoReversi() override = default;
 
 private:
@@ -25,6 +28,10 @@ private:
 
     // Realiza a captura de peças; retorna true se capturou peças
     bool capturarPecas(int jogador, int linha, int coluna);
+
+    // Contadores de peças capturadas por cada jogador
+    int capturasJogador1;
+    int capturasJogador2;
 };
 
 #endif

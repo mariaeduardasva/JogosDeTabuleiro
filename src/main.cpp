@@ -35,7 +35,11 @@ void executarJogoDaVelha() {
             int linha, coluna;
             cin >> linha >> coluna;
 
-            jogo.fazerJogada(turno, linha, coluna);
+            if (!jogo.fazerJogada(turno, linha, coluna)) {
+                cout << "Jogada inválida! Tente novamente.\n";
+                continue;
+            }
+
             jogo.exibirTabuleiro();
 
             if (jogo.verificarVitoria()) {
@@ -43,12 +47,16 @@ void executarJogoDaVelha() {
                 break;
             }
 
-            cout << "Deseja desfazer sua jogada? (1-Sim, 0-Não): ";
+            cout << "Deseja desfazer sua jogada? Você pode desfazer apenas uma vez por partida. (1-Sim, 0-Não): ";
             int desfazer;
             cin >> desfazer;
             if (desfazer == 1) {
-                jogo.desfazerJogada(turno);
-                jogo.exibirTabuleiro();
+                try {
+                    jogo.desfazerJogada(turno);
+                    jogo.exibirTabuleiro();
+                } catch (const exception& e) {
+                    cout << e.what() << endl;
+                }
             }
 
             turno = 3 - turno;
@@ -70,7 +78,11 @@ void executarJogoLig4() {
             int coluna;
             cin >> coluna;
 
-            jogo.fazerJogada(turno, 0, coluna);
+            if (!jogo.fazerJogada(turno, 0, coluna)) {
+                cout << "Jogada inválida! Tente novamente.\n";
+                continue;
+            }
+
             jogo.exibirTabuleiro();
 
             if (jogo.verificarVitoria()) {
@@ -97,14 +109,18 @@ void executarJogoReversi() {
             int linha, coluna;
             cin >> linha >> coluna;
 
-            jogo.fazerJogada(turno, linha, coluna);
+            if (!jogo.fazerJogada(turno, linha, coluna)) {
+                cout << "Jogada inválida! Tente novamente.\n";
+                continue;
+            }
+
             jogo.exibirTabuleiro();
 
             cout << "Pontuação atual:\n";
             jogo.exibirPontuacao();
 
             if (jogo.verificarVitoria()) {
-                cout << "Jogo encerrado!\n";
+                cout << "Parabéns, Jogador " << turno << " venceu!\n";
                 break;
             }
 

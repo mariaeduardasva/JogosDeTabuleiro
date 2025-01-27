@@ -1,47 +1,41 @@
-#ifndef PLAYER_H
-#define PLAYER_H
-#include<string>
-#include<iostream>
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
-using std::string;
+#include <string>
+using namespace std;
 
+class Player {
+private:
+    string nome;
+    string nick;
+    int vitoriasReversi, derrotasReversi;
+    int vitoriasVelha, derrotasVelha;
+    int vitoriasLig4, derrotasLig4;
 
-
-
-class Player
-{
-protected:
-    string _nome;
-    string _nick;
-    int vitoriasJogoDaVelha;
-    int derrotasJogoDaVelha;
-    int vitoriasReversi;
-    int derrotasReversi;
-    int derrotaslig4;
-    int vitoriaslig4;
 public:
+    Player();
     Player(const string &nome, const string &nick);
-    void printaVitoriasEderrotas();
-    ~Player(){};
-    void setVitoriaVelha(int quantidade);
-    void setDerrotaVelha(int quantidade);
-    void setVitoriaReversi(int quantidade);
-    void setDerrotaReversi(int quantidade);
-    void setVitoriaLig4(int quantidade);
-    void setDerrotaLig4(int quantidade);
-    //get
-    int getVitoriaVelha();
-    int getDerrotaVelha();
-    int getVitoriaReversi();
-    int getDerrotaReversi();
-    int getVitoriaLig4();
-    int getDerrotaLig4();
-    string getNick();
-    string getNome();
-    
+
+    string getNome() const;
+    string getNick() const;
+
+    int getVitoriaReversi() const;
+    int getDerrotaReversi() const;
+    void setVitoriaReversi(int v);
+    void setDerrotaReversi(int d);
+
+    int getVitoriaVelha() const;
+    int getDerrotaVelha() const;
+    void setVitoriaVelha(int v);
+    void setDerrotaVelha(int d);
+
+    int getVitoriaLig4() const;
+    int getDerrotaLig4() const;
+    void setVitoriaLig4(int v);
+    void setDerrotaLig4(int d);
+
+    void printaVitoriasEderrotas() const;
 };
 
+#endif
 
-
-
-#endif // PLAYER_H

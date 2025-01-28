@@ -50,10 +50,12 @@ Este projeto implementa três jogos clássicos: Jogo da Velha, Lig4 e Reversi. O
 
 ### Jogos Implementados
 1. **Jogo da Velha:**
-   - Modo clássico e infinito com expansão dinâmica.
-   - Opção de desfazer jogadas.
+   - Modo clássico com tabuleiro 3x3 e infinito com expansão dinâmica.
+   - Opção de desfazer a última jogada.
+     
 2. **Lig4:**
-   - Tabuleiro 6x7 e vitória com 4 peças consecutivas(horizontal, vertical ou diagonal).
+   - Tabuleiro 6x7 e vitória com 4 peças consecutivas (horizontal, vertical ou diagonal).
+     
 3. **Reversi:**
    - Tabuleiro 8x8 e critério de desempate por capturas.
 

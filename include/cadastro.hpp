@@ -1,5 +1,5 @@
-#ifndef CADASTRO_H
-#define CADASTRO_H
+#ifndef CADASTRO_HPP
+#define CADASTRO_HPP
 
 #include "player.hpp"
 #include <map>
@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class ListaDeJogadores {
+class ListaDeJogadores{
 protected:
     map<string, Player> players;
 
@@ -20,5 +20,4 @@ public:
     void ordenaJogadoresEimprimeHistorico();
     void imprimeJogadoresNoArquivo(Player &player, const string& arquivo) const;
 };
-
-#endif // CADASTRO_H
+#endif 

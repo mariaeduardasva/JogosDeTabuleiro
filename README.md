@@ -21,6 +21,8 @@ Este projeto implementa três jogos clássicos: Jogo da Velha, Lig4 e Reversi. O
 - Linux ou Windows
 - Compilador C++ compatível com C++17 (ex.: `g++`)
 - `make` instalado
+
+### Observações:
 A decisão de utilizar o C++17 neste projeto foi motivada pelos recursos e aprimoramentos que essa versão oferece, tornando o código mais eficiente e fácil de manter. O padrão é amplamente suportado e consolidado pela maioria dos compiladores, garantindo compatibilidade em diversos ambientes de desenvolvimento. Além disso, o C++17 incentiva boas práticas de programação, fornecendo recursos que ajudam a evitar erros comuns.
 
 ### Passos para Compilação

@@ -3,10 +3,10 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude
 LDFLAGS = 
 SRC_DIR = src
-LIB_DIR = lib
-INCLUDE_DIR = include
-OBJ_DIR = obj
 BIN_DIR = bin
+INCLUDE_DIR = include
+LIB_DIR = lib
+OBJ_DIR = obj
 TEST_DIR = tests
 TARGET = $(BIN_DIR)/main
 TEST_TARGET = $(BIN_DIR)/tests

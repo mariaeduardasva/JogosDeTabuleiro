@@ -44,14 +44,16 @@ Este projeto implementa três jogos clássicos: Jogo da Velha, Lig4 e Reversi. O
 ## Funcionalidades
 
 ### Cadastro de Jogadores
-- Adicionar, remover e listar jogadores.
+- Adicionar: Coloca jogadores no sistema.
+- Remover: Exclui jogadores do sistema.
+- Listar: Mostra a lista de jogadores cadastrados.
 
 ### Jogos Implementados
 1. **Jogo da Velha:**
    - Modo clássico e infinito com expansão dinâmica.
    - Opção de desfazer jogadas.
 2. **Lig4:**
-   - Tabuleiro 6x7 e vitória com 4 peças consecutivas.
+   - Tabuleiro 6x7 e vitória com 4 peças consecutivas(horizontal, vertical ou diagonal).
 3. **Reversi:**
    - Tabuleiro 8x8 e critério de desempate por capturas.
 

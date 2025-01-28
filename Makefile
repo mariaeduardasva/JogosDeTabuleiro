@@ -1,52 +1,67 @@
 #variáveis
 CXX = g++
-CXXFLAGS = -Iinclude -Wall -Wextra -std=c++17
-SRCDIR = src
-LIBDIR = lib
-TESTDIR = tests
-OBJDIR = obj
-BINDIR = bin
-TARGET = $(BINDIR)/programa
-TESTBIN = $(BINDIR)/testes
+CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude
+LDFLAGS = 
+SRC_DIR = src
+LIB_DIR = lib
+INCLUDE_DIR = include
+OBJ_DIR = obj
+BIN_DIR = bin
+TEST_DIR = tests
+TARGET = $(BIN_DIR)/main
+TEST_TARGET = $(BIN_DIR)/tests
 
-#arquivos fonte e objetos
-SRCFILES = $(wildcard $(SRCDIR)/*.cpp)
-LIBFILES = $(wildcard $(LIBDIR)/*.cpp)
-TESTFILES = $(wildcard $(TESTDIR)/*.cpp)
-ALLFILES = $(SRCFILES) $(LIBFILES)
-OBJFILES = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCFILES)) \
-           $(patsubst $(LIBDIR)/%.cpp,$(OBJDIR)/%.o,$(LIBFILES))
-TESTOBJFILES = $(patsubst $(TESTDIR)/%.cpp,$(OBJDIR)/%.o,$(TESTFILES))
+#busca de arquivos .cpp
+SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+LIB_FILES = $(wildcard $(LIB_DIR)/*.cpp)
+TEST_FILES = $(wildcard $(TEST_DIR)/*.cpp)
+OBJ_FILES = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(notdir $(SRC_FILES) $(LIB_FILES)))
+TEST_OBJ_FILES = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(notdir $(TEST_FILES)))
 
-#regras principais
+#regras
 all: $(TARGET)
 
-$(TARGET): $(OBJFILES)
-	@mkdir -p $(BINDIR)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+#compila o executável principal
+$(TARGET): $(OBJ_FILES)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	@mkdir -p $(OBJDIR)
+#compila arquivos objeto
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJDIR)/%.o: $(LIBDIR)/%.cpp
-	@mkdir -p $(OBJDIR)
+$(OBJ_DIR)/%.o: $(LIB_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-#regras para testes
-tests: $(TESTBIN)
-	@./$(TESTBIN)
+#compila testes
+tests: $(TEST_TARGET)
 
-$(TESTBIN): $(OBJFILES) $(TESTOBJFILES)
-	@mkdir -p $(BINDIR)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+$(TEST_TARGET): $(OBJ_FILES) $(TEST_OBJ_FILES)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
-$(OBJDIR)/%.o: $(TESTDIR)/%.cpp
-	@mkdir -p $(OBJDIR)
+$(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+#limpa
 clean:
-	@rm -rf $(OBJDIR) $(BINDIR)
-#regras especiais
-.PHONY: all clean tests
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
+
+#limpa obj
+clean-obj:
+	rm -rf $(OBJ_DIR)
+
+#help
+help:
+	@echo "comandos:"
+	@echo "  make         - Compila o proj principal"
+	@echo "  make tests   - Compila os testes"
+	@echo "  make clean   - Remove todos os binários e obj"
+	@echo "  make clean-obj - Remove apenas arquivos obj"
+
+.PHONY: all clean clean-obj help tests
+
 

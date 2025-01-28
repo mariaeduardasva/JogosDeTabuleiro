@@ -1,29 +1,52 @@
-# Variáveis
+#variáveis
 CXX = g++
 CXXFLAGS = -Iinclude -Wall -Wextra -std=c++17
 SRCDIR = src
+LIBDIR = lib
+TESTDIR = tests
 OBJDIR = obj
 BINDIR = bin
 TARGET = $(BINDIR)/programa
+TESTBIN = $(BINDIR)/testes
 
-# Arquivos fonte e objetos
+#arquivos fonte e objetos
 SRCFILES = $(wildcard $(SRCDIR)/*.cpp)
-OBJFILES = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCFILES))
+LIBFILES = $(wildcard $(LIBDIR)/*.cpp)
+TESTFILES = $(wildcard $(TESTDIR)/*.cpp)
+ALLFILES = $(SRCFILES) $(LIBFILES)
+OBJFILES = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCFILES)) \
+           $(patsubst $(LIBDIR)/%.cpp,$(OBJDIR)/%.o,$(LIBFILES))
+TESTOBJFILES = $(patsubst $(TESTDIR)/%.cpp,$(OBJDIR)/%.o,$(TESTFILES))
 
-# Regras
+#regras principais
 all: $(TARGET)
 
 $(TARGET): $(OBJFILES)
-	@if not exist $(BINDIR) mkdir $(BINDIR)
+	@mkdir -p $(BINDIR)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	@if not exist $(OBJDIR) mkdir $(OBJDIR)
+	@mkdir -p $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJDIR)/%.o: $(LIBDIR)/%.cpp
+	@mkdir -p $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+#regras para testes
+tests: $(TESTBIN)
+	@./$(TESTBIN)
+
+$(TESTBIN): $(OBJFILES) $(TESTOBJFILES)
+	@mkdir -p $(BINDIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+$(OBJDIR)/%.o: $(TESTDIR)/%.cpp
+	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	@if exist $(OBJDIR) rmdir /s /q $(OBJDIR)
-	@if exist $(BINDIR) rmdir /s /q $(BINDIR)
+	@rm -rf $(OBJDIR) $(BINDIR)
+#regras especiais
+.PHONY: all clean tests
 
-# Regras especiais
-.PHONY: all clean

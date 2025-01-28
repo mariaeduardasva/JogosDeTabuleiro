@@ -58,11 +58,18 @@ Este projeto implementa três jogos clássicos: Jogo da Velha, Lig4 e Reversi. O
    - Tabuleiro 8x8 e critério de desempate por capturas.
 
 ## Classes Principais
-- **`JogoDeTabuleiro` (Abstrata):** Base para os jogos.
-- **Jogos Específicos:** `JogoDaVelha`, `JogoLig4`, `JogoReversi`.
-- **`Player`:** Representa jogadores e estatísticas.
+- **`JogoDeTabuleiro` (Abstrata):** Base para os jogos, inicializa o tabuleiro, realiza uma jogada, verifica condição de vitória, exibe o tabuleiro no console.
+- **Jogos Específicos:** `JogoDaVelha`, `JogoLig4`, `JogoReversi`(estabelece as regras de cada jogo).
+- **`Player`:** Representa jogadores e estatísticas deles.
 - **`ListaDeJogadores`:** Gerencia jogadores.
 
+### Testes
+-
+-
+
+
+### Principais dificuldades encontradas
+- 
 ---
 
 Este projeto foi desenvolvido para fins acadêmicos e como prática de programação em C++.

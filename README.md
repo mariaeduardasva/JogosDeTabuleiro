@@ -65,13 +65,19 @@ Este projeto implementa três jogos clássicos: Jogo da Velha, Lig4 e Reversi. O
 - **`Player`:** Representa jogadores e estatísticas deles.
 - **`ListaDeJogadores`:** Gerencia jogadores.
 
-### Testes
--
--
+### Tests
+- Teste do jogo da velha.
+- Utilizamos a biblioteca Doctest como arquivo de teste para o jogo da velha. Este arquivo contém uma série de casos de teste que verificam as funcionalidades da classe "Jogodavelha".
+- Primeiro testamos a inicialização do tabuleiro, se é inicializado de forma correta com 3 linhas, 3 colunas e se todas as células estão preenchidas com o caractere"-".
+- Depois testamos se o método fazerjogada funciona corretamente ao realizar jogadas e se as células são atualizadas de forma correta.
+- Após isso, verificamos se o método verificarVitoria detecta de forma correta uma vitória ao preencher uma linha com peças do mesmo jogador.
+- Por último, testamos o recurso de desfazer jogada. Analisamos se o método desfazerJogada remove sem erros a última jogada e se o tabuleiro é atualizado com esta remoção.
 
 
 ### Principais dificuldades encontradas
-- 
+- Gerenciar arquivos múltiplos simultaneamente.
+- Lidar com a preocupação de efeitos em cascata, visto que alterações em um trecho do código podem impactar outras partes do sistema.
+  
 ---
 
 Este projeto foi desenvolvido para fins acadêmicos e como prática de programação em C++.

@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include <iostream>
 
-class JogoDeTabuleiro{
+class JogoDeTabuleiro {
 protected:
     std::vector<std::vector<char>> tabuleiro;
     int linhas, colunas;
@@ -18,5 +19,8 @@ public:
     virtual bool verificarVitoria() = 0;
     virtual void exibirTabuleiro() const;
     virtual ~JogoDeTabuleiro() = default;
+
+    bool jogadaValida(int linha, int coluna) const;
 };
+
 #endif

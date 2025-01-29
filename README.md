@@ -1,37 +1,81 @@
 # Jogos de Tabuleiro
 
-Este projeto implementa três jogos clássicos: Jogo da Velha, Lig4 e Reversi. O sistema permite cadastrar jogadores, gerenciar partidas e acompanhar estatísticas, explorando conceitos de programação orientada a objetos em C++.
+## Descrição do Projeto
+
+Este projeto foi desenvolvido como trabalho final da disciplina de Programação e Desenvolvimento de Software II (PDS II). Ele implementa um sistema que permite jogar três jogos clássicos: **Jogo da Velha**, **Lig4** e **Reversi**. O sistema também oferece funcionalidades de cadastro, gerenciamento de jogadores, estatísticas e persistência de dados.
+
+### Jogos Disponíveis
+- **Jogo da Velha:** Inclui modo clássico (3x3) e modo infinito (com expansão dinâmica do tabuleiro).
+- **Lig4:** Tabuleiro de 6x7 com vitória obtida ao alinhar 4 peças consecutivas.
+- **Reversi:** Tabuleiro de 8x8, com critério de desempate baseado nas peças capturadas.
+
+---
+
+## Funcionalidades Implementadas
+
+### Sistema de Gerenciamento de Jogadores
+- Cadastro, remoção e listagem de jogadores.
+- Estatísticas detalhadas para cada jogador (vitórias e derrotas por jogo).
+- Persistência de dados (os jogadores e suas estatísticas são salvos em arquivo para reutilização posterior).
+
+### Funcionalidades Extras
+- **Modo Infinito no Jogo da Velha:** O tabuleiro expande dinamicamente para jogos mais longos.
+- **Desfazer Jogada:** Permite que cada jogador desfaça a última jogada uma vez.
+- **Critério de desempate no Reversi:** Considera as peças capturadas caso haja empate no tabuleiro.
+- **Testes Automatizados:** Verificam as principais funcionalidades do **Jogo da Velha**.
+
+---
 
 ## Estrutura do Projeto
 
 ```plaintext
-├── bin/         # Executáveis gerados
+├── bin/         # Arquivos executáveis
 ├── include/     # Arquivos de cabeçalho (.hpp)
 ├── lib/         # Implementações das classes (.cpp)
-├── obj/         # Arquivos objeto
+├── obj/         # Arquivos objeto (.o)
 ├── src/         # Código-fonte principal
-├── tests/       # Testes automatizados
-├── Makefile     # Compilação automatizada
-└── README.md    # Documentação
+├── tests/       # Arquivos de teste
+├── docs/        # Documentação gerada pelo Doxygen
+├── Makefile     # Automação da compilação
+└── README.md    # Documentação do projeto
 ```
+
+### Classes Principais
+
+1. **`JogoDeTabuleiro`** (classe abstrata):
+   - Representa a base para todos os jogos.
+   - Métodos principais:
+     - `inicializar()`
+     - `fazerJogada()`
+     - `verificarVitoria()`
+     - `exibirTabuleiro()`
+
+2. **`JogoDaVelha`**, **`JogoLig4`**, **`JogoReversi`**:
+   - Implementam as regras e mecânicas específicas de cada jogo.
+
+3. **`Player`**:
+   - Armazena informações de jogadores (nome, apelido, vitórias e derrotas).
+
+4. **`ListaDeJogadores`**:
+   - Gerencia o cadastro, remoção e listagem de jogadores.
+   - Implementa a persistência de dados.
+
+---
 
 ## Compilação e Execução
 
 ### Pré-requisitos
-- Linux ou Windows
-- Compilador C++ compatível com C++17 (ex.: `g++`)
-- `make` instalado
-
-### Observações:
-A decisão de utilizar o C++17 neste projeto foi motivada pelos recursos e aprimoramentos que essa versão oferece, tornando o código mais eficiente e fácil de manter. O padrão é amplamente suportado e consolidado pela maioria dos compiladores, garantindo compatibilidade em diversos ambientes de desenvolvimento. Além disso, o C++17 incentiva boas práticas de programação, fornecendo recursos que ajudam a evitar erros comuns.
+- **Linux/Windows**
+- **Compilador C++** (compatível com C++17)
+- **Makefile** instalado
 
 ### Passos para Compilação
 1. Clone o repositório:
    ```bash
    git clone <URL_DO_REPOSITORIO>
-   cd <NOME_DO_DIRETORIO>
+   cd <DIRETORIO_DO_PROJETO>
    ```
-2. Compile o projeto:
+2. Compile o programa:
    ```bash
    make
    ```
@@ -39,48 +83,54 @@ A decisão de utilizar o C++17 neste projeto foi motivada pelos recursos e aprim
    ```bash
    ./bin/programa
    ```
-4. Limpe os arquivos gerados (opcional):
+4. Execute os testes (opcional):
+   ```bash
+   make tests
+   ./bin/tests
+   ```
+5. Limpe os arquivos gerados (opcional):
    ```bash
    make clean
    ```
 
-## Funcionalidades
-
-### Cadastro de Jogadores
-- Adicionar: Coloca jogadores no sistema.
-- Remover: Exclui jogadores do sistema.
-- Listar: Mostra a lista de jogadores cadastrados.
-
-### Jogos Implementados
-1. **Jogo da Velha:**
-   - Modo clássico com tabuleiro 3x3 e infinito com expansão dinâmica.
-   - Opção de desfazer a última jogada.
-     
-2. **Lig4:**
-   - Tabuleiro 6x7 e vitória com 4 peças consecutivas (horizontal, vertical ou diagonal).
-     
-3. **Reversi:**
-   - Tabuleiro 8x8 e critério de desempate por capturas.
-
-## Classes Principais
-- **`JogoDeTabuleiro` (Abstrata):** Base para os jogos, inicializa o tabuleiro, realiza uma jogada, verifica condição de vitória, exibe o tabuleiro no console.
-- **Jogos Específicos:** `JogoDaVelha`, `JogoLig4`, `JogoReversi`(estabelece as regras de cada jogo).
-- **`Player`:** Representa jogadores e estatísticas deles.
-- **`ListaDeJogadores`:** Gerencia jogadores.
-
-### Tests
-- Teste do jogo da velha.
-- Utilizamos a biblioteca Doctest como arquivo de teste para o jogo da velha. Este arquivo contém uma série de casos de teste que verificam as funcionalidades da classe "Jogodavelha".
-- Primeiro testamos a inicialização do tabuleiro, se é inicializado de forma correta com 3 linhas, 3 colunas e se todas as células estão preenchidas com o caractere"-".
-- Depois testamos se o método fazerjogada funciona corretamente ao realizar jogadas e se as células são atualizadas de forma correta.
-- Após isso, verificamos se o método verificarVitoria detecta de forma correta uma vitória ao preencher uma linha com peças do mesmo jogador.
-- Por último, testamos o recurso de desfazer jogada. Analisamos se o método desfazerJogada remove sem erros a última jogada e se o tabuleiro é atualizado com esta remoção.
-
-
-### Principais dificuldades encontradas
-- Gerenciar arquivos múltiplos simultaneamente.
-- Lidar com a preocupação de efeitos em cascata, visto que alterações em um trecho do código podem impactar outras partes do sistema.
-  
 ---
 
-Este projeto foi desenvolvido para fins acadêmicos e como prática de programação em C++.
+## Documentação
+
+A documentação foi gerada utilizando a ferramenta **Doxygen**. Para acessar:
+1. Navegue até a pasta `docs/html`.
+2. Abra o arquivo `index.html` no navegador.
+
+---
+
+## Principais Dificuldades e Aprendizados
+
+### Dificuldades
+1. **Gerenciamento de múltiplos arquivos:**
+   - A modularização do projeto exigiu atenção especial para garantir que as dependências fossem resolvidas corretamente.
+2. **Persistência de dados:**
+   - Lidar com arquivos para salvar e carregar jogadores demandou cuidados para evitar inconsistências, como linhas em branco ou dados corrompidos.
+3. **Integração de funcionalidades extras:**
+   - Implementar o modo infinito e o desfazer no Jogo da Velha trouxe desafios relacionados à manipulação dinâmica do tabuleiro e histórico de jogadas.
+4. **Testes Automatizados:**
+   - Criar testes robustos para garantir o funcionamento correto do sistema foi uma etapa trabalhosa, mas essencial.
+
+### Aprendizados
+- **Programação orientada a objetos:**
+   - Aplicação de conceitos como herança, polimorfismo e encapsulamento.
+- **Uso de ferramentas de automação:**
+   - Aprendizado prático de Makefile para simplificar o processo de compilação.
+- **Documentação com Doxygen:**
+   - Produção de documentação clara e navegável para projetos de software.
+- **Colaboração em equipe:**
+   - Controle de versão com Git e gerenciamento de tarefas.
+
+---
+
+## Contribuidores
+Este projeto foi desenvolvido por:
+- **[Juliane Aparecida Guaracy Ruas Dutra]**
+- **[Maria Eduarda Rodrigues Silva]**
+- **[Giovanna Vieira Souza]**
+- **[Evandro Eurico Morais Penido]**
+

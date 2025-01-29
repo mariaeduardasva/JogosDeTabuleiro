@@ -114,6 +114,8 @@ A documentação foi gerada utilizando a ferramenta **Doxygen**. Para acessar:
    - Implementar o modo infinito e o desfazer no Jogo da Velha trouxe desafios relacionados à manipulação dinâmica do tabuleiro e histórico de jogadas.
 4. **Testes Automatizados:**
    - Criar testes robustos para garantir o funcionamento correto do sistema foi uma etapa trabalhosa, mas essencial.
+5. **Doxygen:**
+   - Tivemos dificuldade também em realizar a documentação com a ferramente do Doxygen, mas depois de pesquisar e estudar melhor, conseguimos realizar.
 
 ### Aprendizados
 - **Programação orientada a objetos:**

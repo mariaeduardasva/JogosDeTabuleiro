@@ -98,7 +98,7 @@ Este projeto foi desenvolvido como trabalho final da disciplina de Programação
 ## Documentação
 
 A documentação foi gerada utilizando a ferramenta **Doxygen**. Para acessar:
-1. Navegue até a pasta `docs/html`.
+1. Navegue até a pasta `DocumentaçãoOUT/html`.
 2. Abra o arquivo `index.html` no navegador.
 
 ---
